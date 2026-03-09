@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Feliz cumpleaños Alma Leticia 💜 | 8 años</title>
+    <meta name="description" content="Todas las fotos del cumpleaños número 8 de Alma Leticia.">
+    <meta name="author" content="Familia Soria">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Feliz cumpleaños Alma Leticia - 8 años =)">
+    <meta property="og:description" content="Galería completa con más de 230 fotos de la fiesta.">
+    <meta property="og:image" content="DSCN2327.JPG">
+    <meta property="og:url" content="https://www.antoniosoria.com/alma-cumple">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%238a2be2' /%3E%3Ctext x='30' y='70' font-size='60' fill='%23ff69b4'%3E🎀%3C/text%3E%3C/svg%3E">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --kuromi-purple: #6a0dad;
+            --kuromi-pink: #ff69b4;
+            --kuromi-dark: #4b0082;
+            --shadow: 0 10px 30px rgba(106,13,173,0.5);
+        }
+        body {
+            background: linear-gradient(145deg, #2c0b3a, #4a1b6d);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.1"><path fill="%23ff69b4" d="M40,70 Q60,40 80,70 T120,70 T160,70 Q180,100 160,130 T120,130 T80,130 Q60,160 40,130 T0,100 T40,70"/><circle cx="30" cy="30" r="8" fill="white"/><circle cx="170" cy="50" r="12" fill="%239414e0"/><polygon points="100,10 110,40 140,40 115,60 125,90 100,75 75,90 85,60 60,40 90,40" fill="%23ff69b4"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
+        .hero {
+            text-align: center;
+            padding: 30px 10px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 3px 3px 0 var(--kuromi-pink);
+            animation: float 3s infinite;
+        }
+        .hero h1 span {
+            background: var(--kuromi-pink);
+            padding: 0 20px;
+            border-radius: 60px;
+            font-size: 2.5rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .hero p {
+            font-size: 1.8rem;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 10px 40px;
+            border-radius: 50px;
+            border: 2px solid var(--kuromi-pink);
+            margin-top: 20px;
+        }
+        .kuromi-badge i {
+            font-size: 3rem;
+            color: var(--kuromi-pink);
+            margin: 0 10px;
+            filter: drop-shadow(0 0 5px magenta);
+        }
+
+        /* Carrusel */
+        .carousel-section { margin: 40px 0; }
+        .section-title {
+            font-size: 2.8rem;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            border-bottom: 4px dashed var(--kuromi-pink);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 5px solid var(--kuromi-pink);
+            box-shadow: var(--shadow);
+        }
+        .carousel-slide { display: none; }
+        .carousel-slide.active { display: block; animation: fade 0.8s; }
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            background: #2e1a47;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            background: var(--kuromi-pink);
+            color: white;
+            border: none;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.3s;
+            z-index: 10;
+        }
+        .carousel-btn:hover { opacity: 1; background: var(--kuromi-purple); }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+        .carousel-dots { text-align: center; margin-top: 15px; }
+        .dot {
+            height: 15px; width: 15px;
+            margin: 0 5px;
+            background: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        .dot.active-dot { background: var(--kuromi-pink); transform: scale(1.3); }
+
+        /* Galería (grid) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0 30px;
+        }
+        .grid-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid var(--kuromi-pink);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            aspect-ratio: 4/3;
+            background: #3a1f4a;
+            cursor: pointer;
+        }
+        .grid-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px var(--kuromi-pink);
+            border-color: white;
+        }
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Paginación */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .page-btn {
+            background: var(--kuromi-pink);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .page-btn:hover:not(:disabled) {
+            background: var(--kuromi-purple);
+            transform: scale(1.1);
+        }
+        .page-info {
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--kuromi-pink);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding: 20px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 20px;
+            border: 5px solid var(--kuromi-pink);
+        }
+        .close {
+            position: absolute;
+            top: 20px; right: 35px;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close:hover { color: var(--kuromi-pink); transform: scale(1.2); }
+        .download-btn {
+            display: block;
+            margin: 20px auto;
+            background: var(--kuromi-pink);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid white;
+            width: fit-content;
+        }
+        .download-btn:hover {
+            background: var(--kuromi-purple);
+            transform: scale(1.05);
+        }
+
+        /* Footer de agradecimiento */
+        .thanks-footer {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-top: 3px solid var(--kuromi-pink);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 50px 50px 0 0;
+            margin-top: 40px;
+        }
+        .thanks-message {
+            font-size: 2.2rem;
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(45deg, #fff, var(--kuromi-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .thanks-message i {
+            color: var(--kuromi-pink);
+            margin: 0 10px;
+            font-size: 2.5rem;
+            -webkit-text-fill-color: initial;
+        }
+        .thanks-submessage {
+            font-size: 1.5rem;
+            color: #ffb6c1;
+            margin-top: 10px;
+        }
+        .heart-decoration {
+            margin: 20px 0 10px;
+        }
+        .heart-decoration i {
+            color: var(--kuromi-pink);
+            font-size: 2rem;
+            margin: 0 5px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .carousel-slide img { height: 300px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .thanks-message { font-size: 1.5rem; }
+            .thanks-submessage { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="container">
+        <header class="hero">
+            <div class="kuromi-badge">
+                <i class="fas fa-skull"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-crown"></i>
+            </div>
+            <h1>🎀 Alma Leticia 🎀<br><span>8 añitos Kuromi</span></h1>
+            <p>💜 7 de marzo 2026 💜</p>
+        </header>
+
+        <!-- Carrusel (siempre visible) -->
+        <section class="carousel-section">
+            <h2 class="section-title">✨ Momentos especiales ✨</h2>
+            <div class="carousel-container" id="carousel"></div>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </section>
+
+        <!-- Contenido de Fotos (con paginación) -->
+        <div id="fotos-content" class="tab-content active">
+            <h2 class="section-title">📸 Todas las fotos</h2>
+            <div class="gallery-grid" id="fotos-grid"></div>
+            <div class="pagination" id="fotos-pagination">
+                <button class="page-btn" id="fotos-prev" disabled><i class="fas fa-chevron-left"></i></button>
+                <span class="page-info" id="fotos-page-info">Página 1 / X</span>
+                <button class="page-btn" id="fotos-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <button class="download-btn" id="modal-download"><i class="fas fa-download"></i> Descargar</button>
+        </div>
+
+        <!-- Footer con mensaje de agradecimiento -->
+        <footer class="thanks-footer">
+            <div class="heart-decoration">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="thanks-message">
+                <i class="fas fa-star"></i> ¡Gracias por compartir este día tan especial! <i class="fas fa-star"></i>
+            </div>
+            <div class="thanks-submessage">
+                A todos los invitados que nos acompañaron a celebrar los 8 años de Alma Leticia
+            </div>
+            <div class="thanks-submessage" style="font-size: 1.3rem; margin-top: 20px;">
+                Los recuerdos son más bonitos cuando se comparten 💜
+            </div>
+            <div class="heart-decoration" style="margin-top: 30px;">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // LISTA COMPLETA DE ARCHIVOS (según tu carpeta)
+            const files = [
+                'DSCN2320.JPG', 'DSCN2321.JPG', 'DSCN2322.JPG', 'DSCN2323.JPG', 'DSCN2325.JPG',
+                'DSCN2326.JPG', 'DSCN2327.JPG', 'DSCN2328.JPG', 'DSCN2329.JPG', 'DSCN2330.JPG',
+                'DSCN2331.JPG', 'DSCN2332.JPG', 'DSCN2334.JPG', 'DSCN2335.JPG', 'DSCN2337.JPG',
+                'DSCN2344.JPG', 'DSCN2345.JPG', 'DSCN2346.JPG', 'DSCN2347.JPG', 'DSCN2348.JPG',
+                'DSCN2349.JPG', 'DSCN2350.JPG', 'DSCN2351.JPG', 'DSCN2352.JPG', 'DSCN2353.JPG',
+                'DSCN2355.JPG', 'DSCN2356.JPG', 'DSCN2357.JPG', 'DSCN2358.JPG', 'DSCN2362.JPG',
+                'DSCN2364.JPG', 'DSCN2368.JPG', 'DSCN2369.JPG', 'DSCN2370.JPG', 'DSCN2371.JPG',
+                'DSCN2372.JPG', 'DSCN2373.JPG', 'DSCN2374.JPG', 'DSCN2378.JPG', 'DSCN2379.JPG',
+                'DSCN2380.JPG', 'DSCN2381.JPG', 'DSCN2382.JPG', 'DSCN2383.JPG', 'DSCN2386.JPG',
+                'DSCN2390.JPG', 'DSCN2391.JPG', 'DSCN2393.JPG', 'DSCN2395.JPG', 'DSCN2396.JPG',
+                'DSCN2397.JPG', 'DSCN2398.JPG', 'DSCN2399.JPG', 'DSCN2400.JPG', 'DSCN2402.JPG',
+                'DSCN2403.JPG', 'DSCN2405.JPG', 'DSCN2406.JPG', 'DSCN2408.JPG', 'DSCN2414.JPG',
+                'DSCN2415.JPG', 'DSCN2416.JPG', 'DSCN2417.JPG', 'DSCN2418.JPG', 'DSCN2420.JPG',
+                'DSCN2421.JPG', 'DSCN2422.JPG', 'DSCN2423.JPG', 'DSCN2424.JPG', 'DSCN2432.JPG',
+                'DSCN2433.JPG', 'DSCN2435.JPG', 'DSCN2439.JPG', 'DSCN2445.JPG', 'DSCN2449.JPG',
+                'DSCN2451.JPG', 'DSCN2457.JPG', 'DSCN2459.JPG', 'DSCN2460.JPG', 'DSCN2462.JPG',
+                'DSCN2464.JPG', 'DSCN2466.JPG', 'DSCN2468.JPG', 'DSCN2469.JPG', 'DSCN2472.JPG',
+                'DSCN2474.JPG', 'DSCN2476.JPG', 'DSCN2479.JPG', 'DSCN2480.JPG', 'DSCN2482.JPG',
+                'DSCN2484.JPG', 'DSCN2485.JPG', 'DSCN2486.JPG', 'DSCN2488.JPG', 'DSCN2490.JPG',
+                'DSCN2491.JPG', 'DSCN2497.JPG', 'DSCN2498.JPG', 'DSCN2501.JPG', 'DSCN2504.JPG',
+                'DSCN2505.JPG', 'DSCN2506.JPG', 'DSCN2507.JPG', 'DSCN2508.JPG', 'DSCN2509.JPG',
+                'DSCN2510.JPG', 'DSCN2511.JPG', 'DSCN2512.JPG', 'DSCN2513.JPG', 'DSCN2514.JPG',
+                'DSCN2515.JPG', 'DSCN2516.JPG', 'DSCN2517.JPG', 'DSCN2522.JPG', 'DSCN2523.JPG',
+                'DSCN2524.JPG', 'DSCN2528.JPG', 'DSCN2534.JPG', 'DSCN2535.JPG', 'DSCN2537.JPG',
+                'DSCN2539.JPG', 'DSCN2540.JPG', 'DSCN2542.JPG', 'DSCN2543.JPG', 'DSCN2549.JPG',
+                'DSCN2553.JPG', 'DSCN2556.JPG', 'DSCN2558.JPG', 'DSCN2559.JPG', 'DSCN2561.JPG',
+                'DSCN2567.JPG', 'DSCN2571.JPG', 'DSCN2575.JPG', 'DSCN2577.JPG', 'DSCN2578.JPG',
+                'DSCN2579.JPG', 'DSCN2580.JPG', 'DSCN2581.JPG', 'DSCN2584.JPG', 'DSCN2585.JPG',
+                'DSCN2587.JPG', 'DSCN2588.JPG', 'DSCN2590.JPG', 'DSCN2591.JPG', 'DSCN2592.JPG',
+                'DSCN2593.JPG', 'DSCN2595.JPG', 'DSCN2596.JPG', 'DSCN2597.JPG', 'DSCN2598.JPG',
+                'DSCN2599.JPG', 'DSCN2600.JPG', 'DSCN2601.JPG', 'DSCN2602.JPG', 'DSCN2603.JPG',
+                'DSCN2604.JPG', 'DSCN2605.JPG', 'DSCN2606.JPG', 'DSCN2607.JPG', 'DSCN2608.JPG',
+                'DSCN2609.JPG', 'DSCN2610.JPG', 'DSCN2611.JPG', 'DSCN2612.JPG', 'DSCN2613.JPG',
+                'DSCN2614.JPG', 'DSCN2615.JPG', 'DSCN2616.JPG', 'DSCN2617.JPG', 'DSCN2618.JPG',
+                'DSCN2619.JPG', 'DSCN2620.JPG', 'DSCN2621.JPG', 'DSCN2622.JPG', 'DSCN2623.JPG',
+                'DSCN2624.JPG', 'DSCN2625.JPG', 'DSCN2626.JPG', 'DSCN2628.JPG', 'DSCN2629.JPG',
+                'DSCN2630.JPG', 'DSCN2632.JPG', 'DSCN2633.JPG', 'DSCN2634.JPG', 'DSCN2635.JPG',
+                'DSCN2636.JPG', 'DSCN2638.JPG', 'DSCN2639.JPG', 'DSCN2640.JPG', 'DSCN2641.JPG',
+                'DSCN2642.JPG', 'DSCN2643.JPG', 'DSCN2644.JPG', 'DSCN2645.JPG', 'DSCN2646.JPG',
+                'DSCN2647.JPG', 'DSCN2648.JPG', 'DSCN2649.JPG', 'DSCN2650.JPG', 'DSCN2651.JPG',
+                'DSCN2652.JPG', 'DSCN2653.JPG', 'DSCN2654.JPG', 'DSCN2655.JPG', 'DSCN2656.JPG',
+                'DSCN2657.JPG', 'DSCN2658.JPG', 'DSCN2659.JPG', 'DSCN2660.JPG', 'DSCN2661.JPG',
+                'DSCN2662.JPG', 'DSCN2663.JPG', 'DSCN2664.JPG', 'DSCN2665.JPG', 'DSCN2666.JPG',
+                'DSCN2667.JPG', 'DSCN2668.JPG', 'DSCN2669.JPG', 'DSCN2670.JPG', 'DSCN2671.JPG',
+                'DSCN2672.JPG', 'DSCN2673.JPG', 'DSCN2674.JPG', 'DSCN2675.JPG', 'DSCN2676.JPG',
+                'DSCN2677.JPG', 'DSCN2678.JPG'
+            ];
+
+            console.log('Total de fotos:', files.length);
+
+            // -------------------------------------------------------------
+            // CARRUSEL (fotos destacadas)
+            // -------------------------------------------------------------
+            const carouselList = [
+                'DSCN2380.JPG', 'DSCN2332.JPG', 'DSCN2350.JPG', 'DSCN2347.JPG',
+                'DSCN2382.JPG', 'DSCN2423.JPG', 'DSCN2632.JPG', 'DSCN2633.JPG',
+                'DSCN2636.JPG', 'DSCN2522.JPG', 'DSCN2587.JPG', 'DSCN2647.JPG'
+            ];
+
+            const carouselContainer = document.getElementById('carousel');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            let carouselHtml = '';
+            let dotsHtml = '';
+            carouselList.forEach((src, index) => {
+                carouselHtml += `<div class="carousel-slide ${index === 0 ? 'active' : ''}">
+                    <img src="${src}" alt="" loading="${index === 0 ? 'eager' : 'lazy'}">
+                </div>`;
+                dotsHtml += `<span class="dot ${index === 0 ? 'active-dot' : ''}" data-slide="${index}"></span>`;
+            });
+            carouselContainer.innerHTML = carouselHtml + `
+                <button class="carousel-btn prev">❮</button>
+                <button class="carousel-btn next">❯</button>
+            `;
+            dotsContainer.innerHTML = dotsHtml;
+
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prev = document.querySelector('.prev');
+            const next = document.querySelector('.next');
+            const dots = document.querySelectorAll('.dot');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                if (index >= slides.length) index = 0;
+                if (index < 0) index = slides.length - 1;
+                slides.forEach(s => s.classList.remove('active'));
+                slides[index].classList.add('active');
+                dots.forEach(d => d.classList.remove('active-dot'));
+                dots[index].classList.add('active-dot');
+                currentSlide = index;
+            }
+
+            prev.addEventListener('click', () => showSlide(currentSlide - 1));
+            next.addEventListener('click', () => showSlide(currentSlide + 1));
+            dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+
+            // -------------------------------------------------------------
+            // PAGINACIÓN
+            // -------------------------------------------------------------
+            function createPagination(gridId, items, itemsPerPage = 50) {
+                const grid = document.getElementById(gridId);
+                const prevBtn = document.getElementById(gridId.replace('-grid', '-prev'));
+                const nextBtn = document.getElementById(gridId.replace('-grid', '-next'));
+                const pageInfo = document.getElementById(gridId.replace('-grid', '-page-info'));
+                let currentPage = 1;
+                const totalPages = Math.ceil(items.length / itemsPerPage);
+
+                function renderPage() {
+                    const start = (currentPage - 1) * itemsPerPage;
+                    const end = start + itemsPerPage;
+                    const pageItems = items.slice(start, end);
+
+                    let html = '';
+                    pageItems.forEach(file => {
+                        html += `
+                            <div class="grid-item" data-src="${file}" data-type="image">
+                                <img src="${file}" alt="" loading="lazy">
+                            </div>
+                        `;
+                    });
+                    grid.innerHTML = html;
+                    pageInfo.textContent = `Página ${currentPage} / ${totalPages}`;
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderPage();
+                        window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        renderPage();
+                        window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
+                    }
+                });
+
+                renderPage();
+            }
+
+            // Inicializar paginación de fotos
+            createPagination('fotos-grid', files, 50);
+
+            // -------------------------------------------------------------
+            // MODAL
+            // -------------------------------------------------------------
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalDownload = document.getElementById('modal-download');
+            const closeBtn = document.querySelector('.close');
+            let currentSrc = '';
+
+            function openModal(src) {
+                currentSrc = src;
+                modal.style.display = 'block';
+                modalImg.src = currentSrc;
+            }
+
+            // Delegación de eventos para la grid
+            document.body.addEventListener('click', (e) => {
+                const item = e.target.closest('.grid-item');
+                if (!item) return;
+                const src = item.dataset.src;
+                openModal(src);
+            });
+
+            modalDownload.addEventListener('click', () => {
+                if (currentSrc) {
+                    const a = document.createElement('a');
+                    a.href = currentSrc;
+                    a.download = currentSrc.split('/').pop();
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
