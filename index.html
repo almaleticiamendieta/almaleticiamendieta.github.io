@@ -9,7 +9,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Feliz cumpleaños Alma Leticia - 8 años =)">
     <meta property="og:description" content="Galería completa con más de 230 fotos de la fiesta.">
-    <meta property="og:image" content="DSCN2327.JPG">
+    <meta property="og:image" content="./DSCN2327.JPG">
     <meta property="og:url" content="https://www.antoniosoria.com/alma-cumple">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%238a2be2' /%3E%3Ctext x='30' y='70' font-size='60' fill='%23ff69b4'%3E🎀%3C/text%3E%3C/svg%3E">
@@ -101,6 +101,7 @@
             height: 500px;
             object-fit: cover;
             background: #2e1a47;
+            display: block;
         }
         .carousel-btn {
             position: absolute;
@@ -419,6 +420,12 @@
 
             console.log('Total de fotos:', files.length);
 
+            // Función para obtener la ruta correcta de las imágenes
+            function getImagePath(filename) {
+                // Las imágenes están en la misma carpeta que el HTML
+                return './' + filename;
+            }
+
             // -------------------------------------------------------------
             // CARRUSEL (fotos destacadas)
             // -------------------------------------------------------------
@@ -435,19 +442,22 @@
             let dotsHtml = '';
             carouselList.forEach((src, index) => {
                 carouselHtml += `<div class="carousel-slide ${index === 0 ? 'active' : ''}">
-                    <img src="${src}" alt="" loading="${index === 0 ? 'eager' : 'lazy'}">
+                    <img src="${getImagePath(src)}" alt="Foto destacada ${index + 1}" loading="${index === 0 ? 'eager' : 'lazy'}">
                 </div>`;
                 dotsHtml += `<span class="dot ${index === 0 ? 'active-dot' : ''}" data-slide="${index}"></span>`;
             });
+            
+            // Agregar los botones de navegación
             carouselContainer.innerHTML = carouselHtml + `
                 <button class="carousel-btn prev">❮</button>
                 <button class="carousel-btn next">❯</button>
             `;
             dotsContainer.innerHTML = dotsHtml;
 
+            // Inicializar carrusel
             const slides = document.querySelectorAll('.carousel-slide');
-            const prev = document.querySelector('.prev');
-            const next = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
             const dots = document.querySelectorAll('.dot');
             let currentSlide = 0;
 
@@ -461,9 +471,19 @@
                 currentSlide = index;
             }
 
-            prev.addEventListener('click', () => showSlide(currentSlide - 1));
-            next.addEventListener('click', () => showSlide(currentSlide + 1));
-            dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+                nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => showSlide(i));
+            });
+
+            // Auto-advance carrusel cada 5 segundos
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
 
             // -------------------------------------------------------------
             // PAGINACIÓN
@@ -478,38 +498,45 @@
 
                 function renderPage() {
                     const start = (currentPage - 1) * itemsPerPage;
-                    const end = start + itemsPerPage;
+                    const end = Math.min(start + itemsPerPage, items.length);
                     const pageItems = items.slice(start, end);
 
                     let html = '';
                     pageItems.forEach(file => {
+                        const imagePath = getImagePath(file);
                         html += `
-                            <div class="grid-item" data-src="${file}" data-type="image">
-                                <img src="${file}" alt="" loading="lazy">
+                            <div class="grid-item" data-src="${imagePath}">
+                                <img src="${imagePath}" alt="Foto de cumpleaños" loading="lazy">
                             </div>
                         `;
                     });
+                    
                     grid.innerHTML = html;
                     pageInfo.textContent = `Página ${currentPage} / ${totalPages}`;
-                    prevBtn.disabled = currentPage === 1;
-                    nextBtn.disabled = currentPage === totalPages;
+                    
+                    if (prevBtn) prevBtn.disabled = currentPage === 1;
+                    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
                 }
 
-                prevBtn.addEventListener('click', () => {
-                    if (currentPage > 1) {
-                        currentPage--;
-                        renderPage();
-                        window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
-                    }
-                });
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        if (currentPage > 1) {
+                            currentPage--;
+                            renderPage();
+                            window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
+                        }
+                    });
+                }
 
-                nextBtn.addEventListener('click', () => {
-                    if (currentPage < totalPages) {
-                        currentPage++;
-                        renderPage();
-                        window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
-                    }
-                });
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        if (currentPage < totalPages) {
+                            currentPage++;
+                            renderPage();
+                            window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
+                        }
+                    });
+                }
 
                 renderPage();
             }
@@ -530,6 +557,7 @@
                 currentSrc = src;
                 modal.style.display = 'block';
                 modalImg.src = currentSrc;
+                document.body.style.overflow = 'hidden'; // Prevenir scroll
             }
 
             // Delegación de eventos para la grid
@@ -537,29 +565,47 @@
                 const item = e.target.closest('.grid-item');
                 if (!item) return;
                 const src = item.dataset.src;
-                openModal(src);
+                if (src) openModal(src);
             });
 
-            modalDownload.addEventListener('click', () => {
-                if (currentSrc) {
-                    const a = document.createElement('a');
-                    a.href = currentSrc;
-                    a.download = currentSrc.split('/').pop();
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                }
-            });
+            if (modalDownload) {
+                modalDownload.addEventListener('click', () => {
+                    if (currentSrc) {
+                        const a = document.createElement('a');
+                        a.href = currentSrc;
+                        a.download = currentSrc.split('/').pop();
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }
+                });
+            }
 
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restaurar scroll
+                });
+            }
 
             window.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = 'none';
+                    document.body.style.overflow = ''; // Restaurar scroll
                 }
             });
+
+            // Precargar primeras imágenes para mejor experiencia
+            function preloadImages() {
+                const firstImages = files.slice(0, 10);
+                firstImages.forEach(file => {
+                    const img = new Image();
+                    img.src = getImagePath(file);
+                });
+            }
+            
+            // Precargar después de que la página cargue
+            window.addEventListener('load', preloadImages);
         })();
     </script>
 </body>
